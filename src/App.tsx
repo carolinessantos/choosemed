@@ -208,7 +208,7 @@ export default function App() {
             margin: "10px auto",
             padding: "8px 16px",
             backgroundColor: "#1976d2",
-            color: "white",
+            color: "navy",
             border: "none",
             borderRadius: 6,
             cursor: "pointer",
