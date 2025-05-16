@@ -208,7 +208,7 @@ export default function App() {
             margin: "10px auto",
             padding: "8px 16px",
             backgroundColor: "#1976d2",
-            color: "navy",
+            color: "white",
             border: "none",
             borderRadius: 6,
             cursor: "pointer",
@@ -229,12 +229,12 @@ export default function App() {
                 gap: 10,
                 padding: "4px 8px",
                 borderRadius: 6,
-                backgroundColor: i % 2 === 0 ? "#e0f7fa" : "#f1f8e9",
+                backgroundColor: i % 2 === 0 ? "#e0f7fa" : "#f1f8e9"
               }}>
-                <span style={{ fontWeight: "bold" }}>{i + 1}.</span>
-                <span style={{ flex: 1 }}>{uni}</span>
+                <span style={{ fontWeight: "bold", color: "#001f3f" }}>{i + 1}.</span>
+                <span style={{ flex: 1, color: "#001f3f" }}>{uni}</span>
                 <span>
-                  <small>
+                  <small style={{ color: "#001f3f" }}>
                     Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Turma: {data?.classSize}
                   </small>
                 </span>
