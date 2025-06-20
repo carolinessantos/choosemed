@@ -10,7 +10,7 @@ interface University {
 }
 
 const allUniversities: University[] = [
-  { name: "Padova", ranking: "🇮🇹 #1 IT | 🌍 US #124 | QS #236 | THE 201–250", citySize: "208.000", climate: "Subtropical úmido (Cfa) | Verão: 26–29 / 15–19 °C | Inverno: 3–7 / 0–3 °C", vagas2024: "75", notaCorte2024: "64.6 / 63.2" },
+  { name: "Padova", ranking: "🇮🇹 #1 IT | 🌍 US #124 | QS #236 | THE 201–250", citySize: "208.000", climate: "Subtropical úmido (Cfa) | Verão: 26–29 / 15–19 °C | Inverno: 3–7 / 0—3 °C", vagas2024: "75", notaCorte2024: "64.6 / 63.2" },
   { name: "Pavia", ranking: "🇮🇹 #8 IT | 🌍 US #275 | QS #581–590 | THE 301–350", citySize: "74.000", climate: "Subtropical úmido (Cfa) | Verão: ~32 / ~20 °C | Inverno: ~9 / ~1–2 °C", vagas2024: "103", notaCorte2024: "61.8 / –" },
   { name: "Napoli Federico II", ranking: "🇮🇹 #5 IT | 🌍 US #186 | QS #351–400 | THE 351–400", citySize: "908.000", climate: "Mediterrânico | Verão: 30–31 / 18–19 °C | Inverno: 15–16 / 9–10 °C", vagas2024: "15", notaCorte2024: "64.0 / 61.4" },
   { name: "Roma Tor Vergata", ranking: "🇮🇹 #13 IT | 🌍 US #408 | QS #601–650 | THE 301–350", citySize: "2.750.000", climate: "Mediterrânico (Csa) | Verão: 30 / 20 °C | Inverno: 12 / 3 °C", vagas2024: "40", notaCorte2024: "62.0 / –" },
@@ -75,10 +75,12 @@ function ListEditor({
   title,
   list,
   setList,
+  field
 }: {
   title: string;
   list: string[];
   setList: React.Dispatch<React.SetStateAction<string[]>>;
+  field: keyof University;
 }) {
   const moveUp = (index: number) => {
     if (index === 0) return;
@@ -103,44 +105,56 @@ function ListEditor({
       margin: 8,
       flex: 1,
       overflowY: "auto",
-      maxHeight: 500
+      maxHeight: 500,
+      backgroundColor: "white",
+      color: "black"
     }}>
       <h3 style={{ textAlign: "center", fontWeight: "bold", color: "#2c7a7b" }}>{title}</h3>
       <ol>
-        {list.map((uniName, i) => (
-          <li key={uniName} style={{
-            marginBottom: 8,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 10,
-          }}>
-            <div style={{ flex: 1 }}>
-              <strong>{uniName}</strong>
-            </div>
-            <div>
-              <button onClick={() => moveUp(i)} disabled={i === 0}
-                style={{
-                  marginRight: 4,
-                  backgroundColor: "#4caf50",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 4,
-                  padding: "4px 8px",
-                  cursor: i === 0 ? "not-allowed" : "pointer"
-                }}>↑</button>
-              <button onClick={() => moveDown(i)} disabled={i === list.length - 1}
-                style={{
-                  backgroundColor: "#f44336",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 4,
-                  padding: "4px 8px",
-                  cursor: i === list.length - 1 ? "not-allowed" : "pointer"
-                }}>↓</button>
-            </div>
-          </li>
-        ))}
+        {list.map((uniName, i) => {
+          const data = getUniversityData(uniName);
+          return (
+            <li key={uniName} style={{
+              marginBottom: 8,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 10,
+              color: "black"
+            }}>
+              <div style={{ flex: 1 }}>
+                <strong>{uniName}</strong>
+                <div style={{ fontSize: 12 }}>
+                  {field === "ranking" && <>Ranking: {data?.ranking}</>}
+                  {field === "climate" && <>Clima: {data?.climate}</>}
+                  {field === "citySize" && <>População: {data?.citySize}</>}
+                  {field === "vagas2024" && <>Número de vagas 2024: {data?.vagas2024}<br />Nota de corte 2024: {data?.notaCorte2024}</>}
+                </div>
+              </div>
+              <div>
+                <button onClick={() => moveUp(i)} disabled={i === 0}
+                  style={{
+                    marginRight: 4,
+                    backgroundColor: "#4caf50",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    padding: "4px 8px",
+                    cursor: i === 0 ? "not-allowed" : "pointer"
+                  }}>↑</button>
+                <button onClick={() => moveDown(i)} disabled={i === list.length - 1}
+                  style={{
+                    backgroundColor: "#f44336",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    padding: "4px 8px",
+                    cursor: i === list.length - 1 ? "not-allowed" : "pointer"
+                  }}>↓</button>
+              </div>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );
@@ -163,14 +177,14 @@ export default function App() {
   }, [clima, ranking, tamanhoCidade, vagas]);
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", padding: 20, backgroundColor: "white" }}>
+    <div style={{ fontFamily: "Arial, sans-serif", padding: 20, backgroundColor: "white", color: "black" }}>
       <h1 style={{ textAlign: "center", color: "#2c7a7b" }}>ChooseMed</h1>
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <ListEditor title="Clima" list={clima} setList={setClima} />
-        <ListEditor title="Ranking" list={ranking} setList={setRanking} />
-        <ListEditor title="Tamanho Cidade" list={tamanhoCidade} setList={setTamanhoCidade} />
-        <ListEditor title="Número de vagas 2024" list={vagas} setList={setVagas} />
+        <ListEditor title="Clima" list={clima} setList={setClima} field="climate" />
+        <ListEditor title="Ranking" list={ranking} setList={setRanking} field="ranking" />
+        <ListEditor title="Tamanho Cidade" list={tamanhoCidade} setList={setTamanhoCidade} field="citySize" />
+        <ListEditor title="Número de vagas 2024" list={vagas} setList={setVagas} field="vagas2024" />
       </div>
 
       <section style={{ marginTop: 40 }}>
@@ -183,7 +197,8 @@ export default function App() {
                 marginBottom: 8,
                 padding: "4px 8px",
                 borderRadius: 6,
-                backgroundColor: i % 2 === 0 ? "#e0f7fa" : "#f1f8e9"
+                backgroundColor: i % 2 === 0 ? "#e0f7fa" : "#f1f8e9",
+                color: "black"
               }}>
                 <strong>{i + 1}. {uni}</strong><br />
                 <small>
