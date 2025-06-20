@@ -5,21 +5,22 @@ interface University {
   ranking: string;
   citySize: string;
   climate: string;
-  classSize: string;
+  vagas2024: string;
+  notaCorte2024: string;
 }
 
 const allUniversities: University[] = [
-  { name: "Padova", ranking: "#131 QS / 151–175 THE", citySize: "Pádua (~200 mil)", climate: "Norte, frio", classSize: "~75 UE vagas" },
-  { name: "Pavia", ranking: "201–250 QS / 201–250 THE", citySize: "Pavia (~70 mil)", climate: "Norte, frio", classSize: "~103 UE vagas" },
-  { name: "Napoli Federico II", ranking: "201–250 QS / 201–250 THE", citySize: "Nápoles (~1 milhão)", climate: "Sul, ameno", classSize: "~15 UE vagas" },
-  { name: "Roma Tor Vergata", ranking: "251–300 QS / 201–250 THE", citySize: "Roma (~2,8 milhões)", climate: "Centro, ameno", classSize: "~40 UE vagas" },
-  { name: "Milano Statale", ranking: "148 QS / 201–250 THE", citySize: "Milão (~1,3 milhão)", climate: "Norte, frio", classSize: "~46 UE vagas" },
-  { name: "Milano Bicocca", ranking: "392 QS / 351–400 THE", citySize: "Milão (~1,3 milhão)", climate: "Norte, frio", classSize: "~25 UE vagas" },
-  { name: "Bologna", ranking: "154 QS / 161–170 THE", citySize: "Bolonha (~400 mil)", climate: "Centro-Norte, frio", classSize: "~35 UE vagas" },
-  { name: "Bari", ranking: "601–650 QS / 301–400 THE", citySize: "Bari (~320 mil)", climate: "Sul, ameno", classSize: "~69 UE vagas" },
-  { name: "Messina", ranking: "501–550 QS / 301–400 THE", citySize: "Messina (~230 mil)", climate: "Sul, quente", classSize: "~55 UE vagas" },
-  { name: "Catania", ranking: "401–450 QS / — THE", citySize: "Catania (~300 mil)", climate: "Sul, quente", classSize: "~30 UE vagas" },
-  { name: "Cagliari", ranking: "601–800 QS / 301–400 THE", citySize: "Cagliari (~150 mil)", climate: "Sul/ilha, ameno", classSize: "~80 UE vagas" }
+  { name: "Padova", ranking: "🇮🇹 #1 IT | 🌍 US #124 | QS #236 | THE 201–250", citySize: "208.000", climate: "Subtropical úmido (Cfa) | Verão: 26–29 / 15–19 °C | Inverno: 3–7 / 0–3 °C", vagas2024: "75", notaCorte2024: "64.6 / 63.2" },
+  { name: "Pavia", ranking: "🇮🇹 #8 IT | 🌍 US #275 | QS #581–590 | THE 301–350", citySize: "74.000", climate: "Subtropical úmido (Cfa) | Verão: ~32 / ~20 °C | Inverno: ~9 / ~1–2 °C", vagas2024: "103", notaCorte2024: "61.8 / –" },
+  { name: "Napoli Federico II", ranking: "🇮🇹 #5 IT | 🌍 US #186 | QS #351–400 | THE 351–400", citySize: "908.000", climate: "Mediterrânico | Verão: 30–31 / 18–19 °C | Inverno: 15–16 / 9–10 °C", vagas2024: "15", notaCorte2024: "64.0 / 61.4" },
+  { name: "Roma Tor Vergata", ranking: "🇮🇹 #13 IT | 🌍 US #408 | QS #601–650 | THE 301–350", citySize: "2.750.000", climate: "Mediterrânico (Csa) | Verão: 30 / 20 °C | Inverno: 12 / 3 °C", vagas2024: "40", notaCorte2024: "62.0 / –" },
+  { name: "Milano Statale", ranking: "🇮🇹 #3 IT | 🌍 US #156 | QS #276 | THE 201–250", citySize: "1.370.000", climate: "Subtropical úmido (Cfa) | Verão: 30–31 / 18–20 °C | Inverno: 9–11 / 2–4 °C", vagas2024: "55", notaCorte2024: "69.2 / 67.8" },
+  { name: "Milano Bicocca", ranking: "🇮🇹 #14 IT | 🌍 US #413 | QS #481–490 | THE 251–300", citySize: "1.370.000", climate: "Subtropical úmido (Cfa) | Verão: 30–31 / 18–20 °C | Inverno: 9–11 / 2–4 °C", vagas2024: "30", notaCorte2024: "66.7 / 64.8" },
+  { name: "Bologna", ranking: "🇮🇹 #2 IT | 🌍 US #112 | QS #154 | THE #155", citySize: "400.000", climate: "Subtropical úmido (Cfa) | Verão: 31–32 / 17–20 °C | Inverno: ~3 / ~3 °C", vagas2024: "97", notaCorte2024: "65.6 / 64.8" },
+  { name: "Bari", ranking: "🇮🇹 #31 IT | 🌍 US #603 | QS #801–850 | THE 501–600", citySize: "320.000", climate: "Mediterrânico | Verão: >27 °C", vagas2024: "69", notaCorte2024: "59.1 / –" },
+  { name: "Messina", ranking: "🇮🇹 #29 IT | 🌍 US #573 | QS #751–760 | THE 501–600", citySize: "221.000", climate: "Mediterrânico | Verão: 32–35 °C | Inverno: 8–10 °C", vagas2024: "55", notaCorte2024: "57.6 / –" },
+  { name: "Catania", ranking: "🇮🇹 #23 IT | 🌍 US #460 | QS #801–850 | THE 601–800", citySize: "300.000", climate: "Mediterrânico | Verão: 32–35 °C | Inverno: ~10 °C", vagas2024: "30", notaCorte2024: "58.4 / –" },
+  { name: "Cagliari", ranking: "🇮🇹 #36 IT | 🌍 US #653 | QS #716 | THE 601–800", citySize: "147.000", climate: "Mediterrânico | Verão: 30 °C | Inverno: 8–10 °C", vagas2024: "80", notaCorte2024: "56.9 / –" }
 ];
 
 function getUniversityData(name: string): University | undefined {
@@ -106,46 +107,40 @@ function ListEditor({
     }}>
       <h3 style={{ textAlign: "center", fontWeight: "bold", color: "#2c7a7b" }}>{title}</h3>
       <ol>
-        {list.map((uniName, i) => {
-          const data = getUniversityData(uniName);
-          return (
-            <li key={uniName} style={{
-              marginBottom: 8,
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 10,
-            }}>
-              <div style={{ flex: 1 }}>
-                <strong>{uniName}</strong>
-                <div style={{ fontSize: 12, color: "#555" }}>
-                  Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Turma: {data?.classSize}
-                </div>
-              </div>
-              <div>
-                <button onClick={() => moveUp(i)} disabled={i === 0}
-                  style={{
-                    marginRight: 4,
-                    backgroundColor: "#4caf50",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 4,
-                    padding: "4px 8px",
-                    cursor: i === 0 ? "not-allowed" : "pointer"
-                  }}>↑</button>
-                <button onClick={() => moveDown(i)} disabled={i === list.length - 1}
-                  style={{
-                    backgroundColor: "#f44336",
-                    color: "white",
-                    border: "none",
-                    borderRadius: 4,
-                    padding: "4px 8px",
-                    cursor: i === list.length - 1 ? "not-allowed" : "pointer"
-                  }}>↓</button>
-              </div>
-            </li>
-          );
-        })}
+        {list.map((uniName, i) => (
+          <li key={uniName} style={{
+            marginBottom: 8,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 10,
+          }}>
+            <div style={{ flex: 1 }}>
+              <strong>{uniName}</strong>
+            </div>
+            <div>
+              <button onClick={() => moveUp(i)} disabled={i === 0}
+                style={{
+                  marginRight: 4,
+                  backgroundColor: "#4caf50",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 4,
+                  padding: "4px 8px",
+                  cursor: i === 0 ? "not-allowed" : "pointer"
+                }}>↑</button>
+              <button onClick={() => moveDown(i)} disabled={i === list.length - 1}
+                style={{
+                  backgroundColor: "#f44336",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 4,
+                  padding: "4px 8px",
+                  cursor: i === list.length - 1 ? "not-allowed" : "pointer"
+                }}>↓</button>
+            </div>
+          </li>
+        ))}
       </ol>
     </div>
   );
@@ -153,91 +148,47 @@ function ListEditor({
 
 export default function App() {
   const [clima, setClima] = useState(allUniversities.map(u => u.name));
-  const [ranking, setRanking] = useState([
-    "Milano Statale", "Padova", "Bologna", "Pavia",
-    "Napoli Federico II", "Roma Tor Vergata", "Milano Bicocca",
-    "Messina", "Bari", "Catania", "Cagliari"
-  ]);
-  const [tamanhoCidade, setTamanhoCidade] = useState([
-    "Roma Tor Vergata", "Milano Statale", "Napoli Federico II",
-    "Bari", "Padova", "Messina", "Pavia",
-    "Bologna", "Milano Bicocca", "Catania", "Cagliari"
-  ]);
-  const [tamanhoTurma, setTamanhoTurma] = useState([
-    "Pavia", "Padova", "Milano Statale", "Roma Tor Vergata",
-    "Bari", "Napoli Federico II", "Bologna",
-    "Milano Bicocca", "Messina", "Catania", "Cagliari"
-  ]);
+  const [ranking, setRanking] = useState(allUniversities.map(u => u.name));
+  const [tamanhoCidade, setTamanhoCidade] = useState(allUniversities.map(u => u.name));
+  const [vagas, setVagas] = useState(allUniversities.map(u => u.name));
 
   const [combined, setCombined] = useState<string[]>([]);
 
   useEffect(() => {
     const combinedList = combineListsByPosition(
-      [clima, ranking, tamanhoCidade, tamanhoTurma],
+      [clima, ranking, tamanhoCidade, vagas],
       allUniversities.length
     );
     setCombined(combinedList);
-  }, [clima, ranking, tamanhoCidade, tamanhoTurma]);
-
-  const copyCombinedToClipboard = () => {
-    const text = combined.map((uni, i) => {
-      const data = getUniversityData(uni);
-      return `${i + 1}. ${uni} — Clima: ${data?.climate}, Ranking: ${data?.ranking}, Cidade: ${data?.citySize}, Turma: ${data?.classSize}`;
-    }).join("\n");
-    navigator.clipboard.writeText(text);
-    alert("Lista combinada copiada para a área de transferência!");
-  };
+  }, [clima, ranking, tamanhoCidade, vagas]);
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", padding: 20 }}>
+    <div style={{ fontFamily: "Arial, sans-serif", padding: 20, backgroundColor: "white" }}>
       <h1 style={{ textAlign: "center", color: "#2c7a7b" }}>ChooseMed</h1>
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         <ListEditor title="Clima" list={clima} setList={setClima} />
         <ListEditor title="Ranking" list={ranking} setList={setRanking} />
         <ListEditor title="Tamanho Cidade" list={tamanhoCidade} setList={setTamanhoCidade} />
-        <ListEditor title="Tamanho Turma" list={tamanhoTurma} setList={setTamanhoTurma} />
+        <ListEditor title="Número de vagas 2024" list={vagas} setList={setVagas} />
       </div>
 
       <section style={{ marginTop: 40 }}>
         <h2 style={{ textAlign: "center" }}>Lista Combinada</h2>
-        <button
-          onClick={copyCombinedToClipboard}
-          style={{
-            display: "block",
-            margin: "10px auto",
-            padding: "8px 16px",
-            backgroundColor: "#1976d2",
-            color: "white",
-            border: "none",
-            borderRadius: 6,
-            cursor: "pointer",
-          }}
-        >
-          Copiar Lista Combinada
-        </button>
-
         <ol>
           {combined.map((uni, i) => {
             const data = getUniversityData(uni);
             return (
               <li key={uni} style={{
                 marginBottom: 8,
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: 10,
                 padding: "4px 8px",
                 borderRadius: 6,
                 backgroundColor: i % 2 === 0 ? "#e0f7fa" : "#f1f8e9"
               }}>
-                <span style={{ fontWeight: "bold", color: "#001f3f" }}>{i + 1}.</span>
-                <span style={{ flex: 1, color: "#001f3f" }}>{uni}</span>
-                <span>
-                  <small style={{ color: "#001f3f" }}>
-                    Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Turma: {data?.classSize}
-                  </small>
-                </span>
+                <strong>{i + 1}. {uni}</strong><br />
+                <small>
+                  Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Número de vagas 2024: {data?.vagas2024} | Nota de corte 2024: {data?.notaCorte2024}
+                </small>
               </li>
             );
           })}
