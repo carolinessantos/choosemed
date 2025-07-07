@@ -124,8 +124,8 @@ function ListEditor({ title, list, setList, field }: {
                 {field === "notaCorte2024" && <>Nota de corte 2024: {data?.notaCorte2024}</>}
               </span>
               <div>
-                <button onClick={() => moveUp(i)}>↑</button>
-                <button onClick={() => moveDown(i)}>↓</button>
+                <button onClick={() => moveUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4, cursor: i === 0 ? 'not-allowed' : 'pointer' }} disabled={i === 0}>↑</button>
+                <button onClick={() => moveDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', cursor: i === list.length - 1 ? 'not-allowed' : 'pointer' }} disabled={i === list.length - 1}>↓</button>
               </div>
             </li>
           );
