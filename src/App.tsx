@@ -92,7 +92,7 @@ function ListEditor({ title, list, setList, field }: {
   const moveDown = (index: number) => {
     if (index === list.length - 1) return;
     const newList = [...list];
-    [newList[index], newList[index + 1]] = [newList[index + 1], newList[index]];
+    [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
     setList(newList);
   };
 
@@ -151,6 +151,20 @@ export default function App() {
     setCombined(combinedList);
   }, [clima, ranking, cidade, vagas, notaCorte]);
 
+  const moveCombinedUp = (index: number) => {
+    if (index === 0) return;
+    const newList = [...combined];
+    [newList[index - 1], newList[index]] = [newList[index], newList[index - 1]];
+    setCombined(newList);
+  };
+
+  const moveCombinedDown = (index: number) => {
+    if (index === combined.length - 1) return;
+    const newList = [...combined];
+    [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
+    setCombined(newList);
+  };
+
   return (
     <div style={{ backgroundColor: "white", color: "black", fontFamily: "Arial, sans-serif", padding: 20 }}>
       <h1 style={{ textAlign: "center" }}>ChooseMed</h1>
@@ -161,15 +175,23 @@ export default function App() {
         <ListEditor title="Número de Vagas 2024" list={vagas} setList={setVagas} field="vagas2024" />
         <ListEditor title="Nota de Corte 2024" list={notaCorte} setList={setNotaCorte} field="notaCorte2024" />
       </div>
+
+      {/* LISTA FINAL */}
       <section style={{ marginTop: 40 }}>
-        <h2 style={{ textAlign: "center" }}>Lista Combinada</h2>
+        <h2 style={{ textAlign: "center", fontWeight: "bold" }}>LISTA FINAL</h2>
         <ol>
           {combined.map((uni, i) => {
             const data = getUniversityData(uni);
             return (
-              <li key={uni} style={{ marginBottom: 10 }}>
+              <li key={uni} style={{ marginBottom: 12 }}>
                 <strong>{i + 1}. {uni}</strong><br />
-                Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Vagas: {data?.vagas2024} | Nota de Corte: {data?.notaCorte2024}
+                <span style={{ fontSize: 13 }}>
+                  Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Vagas: {data?.vagas2024} | Nota de Corte: {data?.notaCorte2024}
+                </span>
+                <div style={{ marginTop: 4 }}>
+                  <button onClick={() => moveCombinedUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4, cursor: i === 0 ? 'not-allowed' : 'pointer' }} disabled={i === 0}>↑</button>
+                  <button onClick={() => moveCombinedDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', cursor: i === combined.length - 1 ? 'not-allowed' : 'pointer' }} disabled={i === combined.length - 1}>↓</button>
+                </div>
               </li>
             );
           })}
