@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useState, useEffect } from "react";
 
 interface University {
@@ -164,6 +163,12 @@ export default function App() {
     setCombined(newList);
   };
 
+  const copyFinalList = () => {
+    const text = combined.join("\n");
+    navigator.clipboard.writeText(text);
+    alert("LISTA FINAL copiada para a área de transferência!");
+  };
+
   return (
     <div style={{ backgroundColor: "white", color: "black", fontFamily: "Arial, sans-serif", padding: 20 }}>
       <h1 style={{ textAlign: "center" }}>ChooseMed</h1>
@@ -175,15 +180,10 @@ export default function App() {
         <ListEditor title="Nota de Corte 2024" list={notaCorte} setList={setNotaCorte} field="notaCorte2024" />
       </div>
 
-      {/* LISTA FINAL */}
       <section style={{ marginTop: 40 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h2 style={{ fontWeight: "bold" }}>LISTA FINAL</h2>
-          <button onClick={() => {
-            const text = combined.join("\n");
-            navigator.clipboard.writeText(text);
-            alert("LISTA FINAL copiada para a área de transferência!");
-          }} style={{ backgroundColor: "#007bff", color: "white", border: "none", borderRadius: 4, padding: '6px 10px', cursor: 'pointer' }}>
+          <button onClick={copyFinalList} style={{ backgroundColor: "#007bff", color: "white", border: "none", borderRadius: 4, padding: '6px 10px', cursor: 'pointer' }}>
             📋 Copiar Lista
           </button>
         </div>
