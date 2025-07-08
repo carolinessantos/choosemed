@@ -1,3 +1,4 @@
+// App.tsx
 import React, { useState, useEffect } from "react";
 
 interface University {
@@ -32,7 +33,7 @@ function getUniversityData(name: string): University | undefined {
   return allUniversities.find(u => u.name === name);
 }
 
-function combineListsByPosition(lists: string[][], length: number) {
+function combineListsByPosition(lists: string[][], length: number): string[] {
   const chosen = new Set<string>();
   const result: string[] = [];
 
@@ -92,24 +93,22 @@ function ListEditor({ title, list, setList, field }: {
   const moveDown = (index: number) => {
     if (index === list.length - 1) return;
     const newList = [...list];
-    [newList[index], newList[index + 1]] = [newList[index + 1], newList[index]];
+    [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
     setList(newList);
   };
 
+  const copyToClipboard = () => {
+    const text = list.join("\n");
+    navigator.clipboard.writeText(text);
+    alert(`Lista "${title}" copiada para a área de transferência!`);
+  };
+
   return (
-    <div style={{
-      minWidth: 300,
-      border: "1px solid #ccc",
-      padding: 12,
-      borderRadius: 8,
-      margin: 8,
-      flex: 1,
-      overflowY: "auto",
-      maxHeight: 500,
-      backgroundColor: "white",
-      color: "black"
-    }}>
-      <h3 style={{ textAlign: "center", fontWeight: "bold" }}>{title}</h3>
+    <div style={{ minWidth: 300, border: "1px solid #ccc", padding: 12, borderRadius: 8, margin: 8, flex: 1, overflowY: "auto", maxHeight: 500, backgroundColor: "white", color: "black" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <h3 style={{ fontWeight: "bold" }}>{title}</h3>
+        <button onClick={copyToClipboard} style={{ backgroundColor: "#007bff", color: "white", border: "none", borderRadius: 4, padding: '4px 8px', cursor: 'pointer' }}>📋 Copiar Lista</button>
+      </div>
       <ol>
         {list.map((uniName, i) => {
           const data = getUniversityData(uniName);
@@ -124,8 +123,8 @@ function ListEditor({ title, list, setList, field }: {
                 {field === "notaCorte2024" && <>Nota de corte 2024: {data?.notaCorte2024}</>}
               </span>
               <div>
-                <button onClick={() => moveUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4, cursor: i === 0 ? 'not-allowed' : 'pointer' }} disabled={i === 0}>↑</button>
-                <button onClick={() => moveDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', cursor: i === list.length - 1 ? 'not-allowed' : 'pointer' }} disabled={i === list.length - 1}>↓</button>
+                <button onClick={() => moveUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4 }} disabled={i === 0}>↑</button>
+                <button onClick={() => moveDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px' }} disabled={i === list.length - 1}>↓</button>
               </div>
             </li>
           );
@@ -151,6 +150,20 @@ export default function App() {
     setCombined(combinedList);
   }, [clima, ranking, cidade, vagas, notaCorte]);
 
+  const moveCombinedUp = (index: number) => {
+    if (index === 0) return;
+    const newList = [...combined];
+    [newList[index - 1], newList[index]] = [newList[index], newList[index - 1]];
+    setCombined(newList);
+  };
+
+  const moveCombinedDown = (index: number) => {
+    if (index === combined.length - 1) return;
+    const newList = [...combined];
+    [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
+    setCombined(newList);
+  };
+
   return (
     <div style={{ backgroundColor: "white", color: "black", fontFamily: "Arial, sans-serif", padding: 20 }}>
       <h1 style={{ textAlign: "center" }}>ChooseMed</h1>
@@ -161,15 +174,32 @@ export default function App() {
         <ListEditor title="Número de Vagas 2024" list={vagas} setList={setVagas} field="vagas2024" />
         <ListEditor title="Nota de Corte 2024" list={notaCorte} setList={setNotaCorte} field="notaCorte2024" />
       </div>
+
+      {/* LISTA FINAL */}
       <section style={{ marginTop: 40 }}>
-        <h2 style={{ textAlign: "center" }}>Lista Combinada</h2>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h2 style={{ fontWeight: "bold" }}>LISTA FINAL</h2>
+          <button onClick={() => {
+            const text = combined.join("\n");
+            navigator.clipboard.writeText(text);
+            alert("LISTA FINAL copiada para a área de transferência!");
+          }} style={{ backgroundColor: "#007bff", color: "white", border: "none", borderRadius: 4, padding: '6px 10px', cursor: 'pointer' }}>
+            📋 Copiar Lista
+          </button>
+        </div>
         <ol>
           {combined.map((uni, i) => {
             const data = getUniversityData(uni);
             return (
-              <li key={uni} style={{ marginBottom: 10 }}>
+              <li key={uni} style={{ marginBottom: 12 }}>
                 <strong>{i + 1}. {uni}</strong><br />
-                Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Vagas: {data?.vagas2024} | Nota de Corte: {data?.notaCorte2024}
+                <span style={{ fontSize: 13 }}>
+                  Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Vagas: {data?.vagas2024} | Nota de Corte: {data?.notaCorte2024}
+                </span>
+                <div style={{ marginTop: 4 }}>
+                  <button onClick={() => moveCombinedUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4 }} disabled={i === 0}>↑</button>
+                  <button onClick={() => moveCombinedDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px' }} disabled={i === combined.length - 1}>↓</button>
+                </div>
               </li>
             );
           })}
