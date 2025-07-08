@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useState, useEffect } from "react";
 
 interface University {
@@ -16,16 +15,24 @@ const allUniversities: University[] = [
   { name: "Napoli Federico II", ranking: "🇮🇹 #5 IT | 🌍 US #186 | QS #351–400 | THE 351–400", citySize: "Nápoles – 908.000", climate: "Mediterrânico | Verão: 30–31 / 18–19 °C | Inverno: 15–16 / 9–10 °C", vagas2024: "15", notaCorte2024: "64.0 / 61.4" },
   { name: "Roma Tor Vergata", ranking: "🇮🇹 #13 IT | 🌍 US #408 | QS #601–650 | THE 301–350", citySize: "Roma – 2.750.000", climate: "Mediterrânico (Csa) | Verão: 30 / 20 °C | Inverno: 12 / 3 °C", vagas2024: "40", notaCorte2024: "62.0 / –" },
   { name: "Milano Statale", ranking: "🇮🇹 #3 IT | 🌍 US #156 | QS #276 | THE 201–250", citySize: "Milão – 1.370.000", climate: "Subtropical úmido (Cfa) | Verão: 30–31 / 18–20 °C | Inverno: 9–11 / 2–4 °C", vagas2024: "55", notaCorte2024: "69.2 / 67.8" },
+  { name: "Milano Bicocca", ranking: "🇮🇹 #14 IT | 🌍 US #413 | QS #481–490 | THE 251–300", citySize: "Milão – 1.370.000", climate: "Subtropical úmido (Cfa) | Verão: 30–31 / 18–20 °C | Inverno: 9–11 / 2–4 °C", vagas2024: "30", notaCorte2024: "66.7 / 64.8" },
   { name: "Bologna", ranking: "🇮🇹 #2 IT | 🌍 US #112 | QS #154 | THE #155", citySize: "Bolonha – 400.000", climate: "Subtropical úmido (Cfa) | Verão: 31–32 / 17–20 °C | Inverno: ~3 / ~3 °C", vagas2024: "97", notaCorte2024: "65.6 / 64.8" },
+  { name: "Bari", ranking: "🇮🇹 #31 IT | 🌍 US #603 | QS #801–850 | THE 501–600", citySize: "Bari – 320.000", climate: "Mediterrânico | Verão: >27 °C", vagas2024: "69", notaCorte2024: "59.1 / –" },
+  { name: "Messina", ranking: "🇮🇹 #29 IT | 🌍 US #573 | QS #751–760 | THE 501–600", citySize: "Messina – 221.000", climate: "Mediterrânico | Verão: 32–35 °C | Inverno: 8–10 °C", vagas2024: "55", notaCorte2024: "57.6 / –" },
+  { name: "Catania", ranking: "🇮🇹 #23 IT | 🌍 US #460 | QS #801–850 | THE 601–800", citySize: "Catania – 300.000", climate: "Mediterrânico | Verão: 32–35 °C | Inverno: ~10 °C", vagas2024: "30", notaCorte2024: "58.4 / –" },
   { name: "Cagliari", ranking: "🇮🇹 #36 IT | 🌍 US #653 | QS #716 | THE 601–800", citySize: "Cagliari – 147.000", climate: "Mediterrânico | Verão: 30 °C | Inverno: 8–10 °C", vagas2024: "80", notaCorte2024: "56.9 / –" },
-  { name: "La Sapienza", ranking: "🇮🇹 #4 IT | 🌍 US #128 | QS #134 | THE #181", citySize: "Roma – 2.750.000", climate: "Mediterrânico (Csa) | Verão: 30 / 20 °C | Inverno: 12 / 3 °C", vagas2024: "45", notaCorte2024: "65.5 / 65.1" }
+  { name: "Parma", ranking: "🇮🇹 #26 IT | 🌍 US #487 | QS #701–750 | THE 501–600", citySize: "Parma – 199.000", climate: "Subtropical úmido (Cfa) | Verão: ~30 °C | Inverno: ~0–3 °C", vagas2024: "75", notaCorte2024: "60.3 / –" },
+  { name: "Luigi Vanvitelli", ranking: "🇮🇹 — | 🌍 — | QS #1201–1400 | THE 501–600", citySize: "Caserta – ~75.000–80.000", climate: "Mediterrânico | Sem dados específicos", vagas2024: "60", notaCorte2024: "59.5 / –" },
+  { name: "Turin", ranking: "🇮🇹 #6 IT | 🌍 US #209 | QS #252 | THE 401–500", citySize: "Turim – 857.000", climate: "Subtropical úmido (Cfa) | Verão: 25–28 °C | Inverno: 6–9 / 0–1 °C", vagas2024: "70", notaCorte2024: "62.4 / –" },
+  { name: "La Sapienza", ranking: "🇮🇹 #4 IT | 🌍 US #128 | QS #134 | THE #181", citySize: "Roma – 2.750.000", climate: "Mediterrânico (Csa) | Verão: 30 / 20 °C | Inverno: 12 / 3 °C", vagas2024: "45", notaCorte2024: "65.5 / 65.1" },
+  { name: "Marche (Ancona)", ranking: "🇮🇹 — | 🌍 — | QS — | THE —", citySize: "Ancona – 100.000", climate: "Subtropical úmido (Cfa) | Verão: 28–29 / 19 °C | Inverno: 9 / 3 °C", vagas2024: "20", notaCorte2024: "60.2 / –" }
 ];
 
 function getUniversityData(name: string): University | undefined {
   return allUniversities.find(u => u.name === name);
 }
 
-function combineListsByPosition(lists: string[][], length: number): string[] {
+function combineListsByPosition(lists: string[][], length: number) {
   const chosen = new Set<string>();
   const result: string[] = [];
 
@@ -85,22 +92,24 @@ function ListEditor({ title, list, setList, field }: {
   const moveDown = (index: number) => {
     if (index === list.length - 1) return;
     const newList = [...list];
-    [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
+    [newList[index], newList[index + 1]] = [newList[index + 1], newList[index]];
     setList(newList);
   };
 
-  const copyToClipboard = () => {
-    const text = list.join("\n");
-    navigator.clipboard.writeText(text);
-    alert(`Lista "${title}" copiada para a área de transferência!`);
-  };
-
   return (
-    <div style={{ minWidth: 300, border: "1px solid #ccc", padding: 12, borderRadius: 8, margin: 8, flex: 1, overflowY: "auto", maxHeight: 500, backgroundColor: "white", color: "black" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h3 style={{ fontWeight: "bold" }}>{title}</h3>
-        <button onClick={copyToClipboard} style={{ backgroundColor: "#007bff", color: "white", border: "none", borderRadius: 4, padding: '4px 8px', cursor: 'pointer' }}>📋 Copiar Lista</button>
-      </div>
+    <div style={{
+      minWidth: 300,
+      border: "1px solid #ccc",
+      padding: 12,
+      borderRadius: 8,
+      margin: 8,
+      flex: 1,
+      overflowY: "auto",
+      maxHeight: 500,
+      backgroundColor: "white",
+      color: "black"
+    }}>
+      <h3 style={{ textAlign: "center", fontWeight: "bold" }}>{title}</h3>
       <ol>
         {list.map((uniName, i) => {
           const data = getUniversityData(uniName);
@@ -115,8 +124,8 @@ function ListEditor({ title, list, setList, field }: {
                 {field === "notaCorte2024" && <>Nota de corte 2024: {data?.notaCorte2024}</>}
               </span>
               <div>
-                <button onClick={() => moveUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4 }} disabled={i === 0}>↑</button>
-                <button onClick={() => moveDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px' }} disabled={i === list.length - 1}>↓</button>
+                <button onClick={() => moveUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4, cursor: i === 0 ? 'not-allowed' : 'pointer' }} disabled={i === 0}>↑</button>
+                <button onClick={() => moveDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', cursor: i === list.length - 1 ? 'not-allowed' : 'pointer' }} disabled={i === list.length - 1}>↓</button>
               </div>
             </li>
           );
@@ -142,20 +151,6 @@ export default function App() {
     setCombined(combinedList);
   }, [clima, ranking, cidade, vagas, notaCorte]);
 
-  const moveCombinedUp = (index: number) => {
-    if (index === 0) return;
-    const newList = [...combined];
-    [newList[index - 1], newList[index]] = [newList[index], newList[index - 1]];
-    setCombined(newList);
-  };
-
-  const moveCombinedDown = (index: number) => {
-    if (index === combined.length - 1) return;
-    const newList = [...combined];
-    [newList[index + 1], newList[index]] = [newList[index], newList[index + 1]];
-    setCombined(newList);
-  };
-
   return (
     <div style={{ backgroundColor: "white", color: "black", fontFamily: "Arial, sans-serif", padding: 20 }}>
       <h1 style={{ textAlign: "center" }}>ChooseMed</h1>
@@ -166,32 +161,15 @@ export default function App() {
         <ListEditor title="Número de Vagas 2024" list={vagas} setList={setVagas} field="vagas2024" />
         <ListEditor title="Nota de Corte 2024" list={notaCorte} setList={setNotaCorte} field="notaCorte2024" />
       </div>
-
-      {/* LISTA FINAL */}
       <section style={{ marginTop: 40 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h2 style={{ fontWeight: "bold" }}>LISTA FINAL</h2>
-          <button onClick={() => {
-            const text = combined.join("\n");
-            navigator.clipboard.writeText(text);
-            alert("LISTA FINAL copiada para a área de transferência!");
-          }} style={{ backgroundColor: "#007bff", color: "white", border: "none", borderRadius: 4, padding: '6px 10px', cursor: 'pointer' }}>
-            📋 Copiar Lista
-          </button>
-        </div>
+        <h2 style={{ textAlign: "center" }}>Lista Combinada</h2>
         <ol>
           {combined.map((uni, i) => {
             const data = getUniversityData(uni);
             return (
-              <li key={uni} style={{ marginBottom: 12 }}>
+              <li key={uni} style={{ marginBottom: 10 }}>
                 <strong>{i + 1}. {uni}</strong><br />
-                <span style={{ fontSize: 13 }}>
-                  Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Vagas: {data?.vagas2024} | Nota de Corte: {data?.notaCorte2024}
-                </span>
-                <div style={{ marginTop: 4 }}>
-                  <button onClick={() => moveCombinedUp(i)} style={{ backgroundColor: 'green', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px', marginRight: 4 }} disabled={i === 0}>↑</button>
-                  <button onClick={() => moveCombinedDown(i)} style={{ backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4, padding: '4px 8px' }} disabled={i === combined.length - 1}>↓</button>
-                </div>
+                Clima: {data?.climate} | Ranking: {data?.ranking} | Cidade: {data?.citySize} | Vagas: {data?.vagas2024} | Nota de Corte: {data?.notaCorte2024}
               </li>
             );
           })}
